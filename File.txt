@@ -3,3 +3,5 @@ Content added to it for first time.
 Second content added to the file.
 
 Third line from add from local repo
+
+Third line added to the file.
