@@ -1,13 +1,116 @@
-Content added to it for first time.
+search-contact.component.ts:
+===========================
+import { Component, OnInit } from '@angular/core';
 
-Second content added to the file.
+@Component({
+  selector: 'app-search-contact',
+  templateUrl: './search-contact.component.html',
+  styleUrls: ['./search-contact.component.css']
+})
+export class SearchContactComponent implements OnInit {
 
-Third line from add from local repo
+  contacts: Contact[]=[
+    {contactnumber:8554465152,contactname:"Sam jr"},
+    {contactnumber:9021550339,contactname:"Navdeep Mor"}
+  ];
 
-Third line added to the file.
 
-<<<<<<< HEAD
-Forth line added in local repo.
-=======
-Adding forth line to the file in remote repo.
->>>>>>> 6be25bfeb0789a03360696a3ce2154120ccb77bd
+  search()
+  {
+    
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+class Contact{
+  contactnumber:number=0;
+  contactname:string="";
+}
+
+
+search-contact.component.html:
+=============================
+<p>search-contact works!</p>
+
+<table>
+    <tr>
+        <td><span id="contacthead">Contact details:<br/><br/></span></td>
+    </tr>
+    <tr>
+        <td><input type="text">{{" "}}<button (click)="search()">Search</button><br/><br/></td>
+    </tr>
+    <tr *ngFor="let c of contacts">
+        <td>{{c.contactname}}<br/><span id="contact">{{c.contactnumber}}</span></td>
+    </tr>
+</table>
+<br/>
+<button>Add Contact</button>
+
+
+search-contact.component.css:
+============================
+p{
+    font-family: calibri;
+    color: lightblue;
+}
+
+td{
+    font-family: calibri;
+    color: lightblue;
+}
+
+#contact{
+    font-family: calibri;
+    color: lightgray;
+}
+
+#contacthead{
+    color: lightsalmon;
+}
+
+
+add-contact.component.html:
+==========================
+<p>add-contact works!</p>
+
+<form [formGroup]="AddContactForm" (ngSubmit)="onSubmit()">
+    <lable for="contactName">Contact Name</lable><br/>
+    <input type="text"  id="contactName" formControlName="contactName"><br/><br/>
+    <lable for="contactNumber">Contact Number</lable><br/>
+    <input type="text" id="contactNumber" formControlName="contactNumber"><br/><br/>
+    <button type="submit">Save</button>
+</form>
+
+
+add-contact.component.ts:
+========================
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-add-contact',
+  templateUrl: './add-contact.component.html',
+  styleUrls: ['./add-contact.component.css']
+})
+export class AddContactComponent implements OnInit {
+
+  AddContactForm: FormGroup;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.AddContactForm = new FormGroup({
+      contactName: new FormControl(),
+      contactNumber: new FormControl()
+  });
+  }
+
+  onSubmit():void{
+    console.log(this.AddContactForm.value.contactName);
+  }
+}
