@@ -6,4 +6,8 @@ Third line from add from local repo
 
 Third line added to the file.
 
+<<<<<<< HEAD
 Forth line added in local repo.
+=======
+Adding forth line to the file in remote repo.
+>>>>>>> 6be25bfeb0789a03360696a3ce2154120ccb77bd
